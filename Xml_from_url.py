@@ -11,5 +11,5 @@ for item in xmldoc.iterfind('channel/item'):
 
    # print(title)
   #  print(date)
-    print(link)
+   # print(link)
     #print()
