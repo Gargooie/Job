@@ -1,16 +1,12 @@
-from urllib.request import urlopen
-from xml.etree.ElementTree import parse
+import requests
+from xml.etree import ElementTree
 
-var_url = urlopen('https://blogs.oracle.com/oraclepartners/database-7/rss')
-xmldoc = parse(var_url)
+r = requests.get('https://api.ilsa.ru/sale/v1/dealers.xml?q=status:exchange')
+#user = r.content
+#user2 = r.text
+#print(user2) 
 
-for item in xmldoc.iterfind('channel/item'):
-    title = item.findtext('title')
-    date = item.findtext('pubDate')
-    link = item.findtext('link')
-
-   # print(title)
-  #  print(date)
-   # print(link)
-    #print()
-
+tree = ElementTree.fromstring(r.content)
+for c in tree:
+	name = c.find('Name').text
+	print(name)
